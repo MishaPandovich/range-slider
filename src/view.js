@@ -1,10 +1,10 @@
 export default class View {
 	constructor(parentElement) {
-		this.parentElement;
+		this.parentElement = parentElement.id;
 	}
 
-	changeView(left) {
-		this.thumb.style.left = left + 'px';
+	changeView(thumb, left) {
+		thumb.style.left = left + 'px';
 	}
 
 	initSlider(parentElement) {

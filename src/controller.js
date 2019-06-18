@@ -2,39 +2,28 @@ export default class Controller {
 	constructor(Model, View) {
 		this._model = Model;
 		this._view = View;
-
 		this.positionSlider = 0;
-		this.parentElement = this._view.parentElement;
-
-
-		console.log(View.parentElement);
-		this.thumb = this._view.thumb;
-		this.line = this._view.line;
 	}
 
-	mousedownThumb(e) {
-		console.log(this.thumb);
-
-
+	mousedownThumb(thumb) {
 		this._model.drag_status = true;
-		this.positionSlider = e.pageX - this.thumb.offsetLeft;
+		this.positionSlider = event.pageX - thumb.offsetLeft;
+	} 
 
-	}
-
-	mousemoveThumb(e) {
+	mousemoveThumb(thumb, line) {
 		if (!this._model.drag_status) return false;
 		
-		this._model.positionX = e.pageX - this.positionSlider;
+		this._model.positionX = event.pageX - this.positionSlider;
 
 		if (this._model.positionX < 0) {
 			this._model.positionX = 0;
 		}
 		
-		if (this._model.positionX > (this.line.offsetWidth - this.thumb.offsetWidth)) {
-			this._model.positionX = (this.line.offsetWidth - this.thumb.offsetWidth);
+		if (this._model.positionX > (line.offsetWidth - thumb.offsetWidth)) {
+			this._model.positionX = (line.offsetWidth - thumb.offsetWidth);
 		}
 
-	 	this._view.changeView(this._model.positionX);
+	 	this._view.changeView(thumb, this._model.positionX);
 	}
 
 	mouseupThumb() {

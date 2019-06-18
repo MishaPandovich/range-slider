@@ -13,16 +13,16 @@ import Controller from './controller.js';
 		const controller = new Controller(model, view); 
 
 		view.initSlider(firstThis);
+		
+		var thumb = document.getElementById(firstThis.id + '__thumb');
+		var line = document.getElementById(firstThis.id + '__line');
 
+		function standart(thumbElem, lineElem) {
+			thumbElem.onmousedown = function() {
+				controller.mousedownThumb(thumbElem);
 
-		var thumb = document.querySelector('#sliders__thumb');
-
-		function standart(elemnt, e) {
-			thumb.onmousedown = function(element, e) {
-				controller.mousedownThumb(element, e);
-
-				document.onmousemove = function(element, e) {
-					controller.mousemoveThumb(element, e);
+				document.onmousemove = function() {
+					controller.mousemoveThumb(thumbElem, lineElem);
 				}
 
 				document.onmouseup = function(){
@@ -33,33 +33,8 @@ import Controller from './controller.js';
 			}
 		}
 
-		standart(thumb, event);
+		standart(thumb, line);
 	};
 
 })(jQuery);
-
-
-// 1. создаем слайдер + 
-// 2. 
-
-/*
-var thumb = document.querySelector('#thumb');
-
-function standart(e) {
-	thumb.onmousedown = function(e) {
-		controller.mousedownThumb(e);
-
-		document.onmousemove = function(e) {
-			controller.mousemoveThumb(e);
-		}
-
-		document.onmouseup = function(){
-			controller.mouseupThumb();
-		}
-
-		return false; // disable selection start (cursor change)
-	}
-}
-
-standart(event);*/
 
