@@ -4,13 +4,21 @@ export default class Controller {
 		this._view = View;
 
 		this.positionSlider = 0;
+		this.parentElement = this._view.parentElement;
+
+
+		console.log(View.parentElement);
 		this.thumb = this._view.thumb;
 		this.line = this._view.line;
 	}
 
 	mousedownThumb(e) {
+		console.log(this.thumb);
+
+
 		this._model.drag_status = true;
 		this.positionSlider = e.pageX - this.thumb.offsetLeft;
+
 	}
 
 	mousemoveThumb(e) {
