@@ -8,20 +8,27 @@
 	<!--<script src="js/jquery.npoll.js"></script>-->
 </head>
 <body>
-	<!--<div id="slider" class="slider">
-		<div id="line" class="line">
-			<div id="thumb" class="thumb"></div>
-			<div id="thumb2" class="thumb2"></div>
-		</div>
-	</div>-->
 	
 	<div id="sliders"></div>
 
 	<div id="slide"></div>
+
 	<script src="main.js"></script>
 	<script>
 		$(function() {
-			$('#sliders').slider();
+			$('#sliders').slider({
+				posThumbLeft: 20
+			});
+		})
+	</script>
+
+	<script>
+		$(function() {
+			$('#slide').slider({
+				rangeSlider: true,
+				posThumbLeft: 30,
+				posThumbRigth: 150
+			});
 		})
 	</script>
 </body>

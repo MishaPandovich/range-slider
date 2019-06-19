@@ -3,27 +3,43 @@ import Model from './model.js';
 import View from './view.js';
 import Controller from './controller.js';
 
-
 ;(function($) {
 	const model = new Model();
 	const view = new View();
 	const controller = new Controller(model, view); 
 
-	$.fn.slider = function() {
-		const firstThis = this[0];
+	var defaults = {
+		rangeSlider: false,
+		posThumbLeft: 10,
+		posThumbRigth: 30
+	}
 
-		view.initRangeSlider(firstThis);
-		
-		var thumb = document.getElementById(firstThis.id + '__thumb');
-		var thumb2 = document.getElementById(firstThis.id + '__thumb2');
-		var line = document.getElementById(firstThis.id + '__line');
+	$.fn.slider = function(options) {
+		var config = $.extend({}, defaults, options);
+		var firstThis = this[0];
 
-		function standart(thumbElem, lineElem) {
-			thumbElem.onmousedown = function() {
-				controller.mousedownThumb(thumbElem);
+		if (!config.rangeSlider) {
+			view.initSlider(firstThis, config.posThumbLeft);
+			var thumb = document.getElementById(firstThis.id + '__thumb');
+			var line = document.getElementById(firstThis.id + '__line');
+
+			initSlider(thumb, line);
+		} else {
+			view.initRangeSlider(firstThis, config.posThumbLeft, config.posThumbRigth);
+			var thumb = document.getElementById(firstThis.id + '__thumb');
+			var thumb2 = document.getElementById(firstThis.id + '__thumb2');
+			var line = document.getElementById(firstThis.id + '__line');
+
+			initThumbLeft(thumb, thumb2, line);
+			initThumbRigth(thumb, thumb2, line);
+		}
+	
+		function initSlider(thumbEl, lineEl) {
+			thumbEl.onmousedown = function() {
+				controller.mousedownThumb(thumbEl);
 
 				document.onmousemove = function() {
-					controller.mousemoveThumb(thumbElem, lineElem);
+					controller.mousemoveThumb(thumbEl, lineEl);
 				}
 
 				document.onmouseup = function(){
@@ -34,14 +50,12 @@ import Controller from './controller.js';
 			}
 		}
 
-		//standart(thumb, line);
-
-		function thumbLeft(thumbElem, thumbElem2, lineElem) {
-			thumbElem.onmousedown = function() {
-				controller.mousedownThumb(thumbElem);
+		function initThumbLeft(thumbEl, thumbEl2, lineEl) {
+			thumbEl.onmousedown = function() {
+				controller.mousedownThumb(thumbEl);
 
 				document.onmousemove = function() {
-					controller.mousemoveThumbLeft(thumbElem, thumbElem2, lineElem);
+					controller.mousemoveThumbLeft(thumbEl, thumbEl2, lineEl);
 				}
 
 				document.onmouseup = function(){
@@ -52,14 +66,12 @@ import Controller from './controller.js';
 			}
 		}
 
-		//thumbLeft(thumb, thumb2, line);
-
-		function thumbRigth(thumbElem, thumbElem2, lineElem) {
-			thumbElem2.onmousedown = function() {
-				controller.mousedownThumb(thumbElem2);
+		function initThumbRigth(thumbEl, thumbEl2, lineEl) {
+			thumbEl2.onmousedown = function() {
+				controller.mousedownThumb(thumbEl2);
 
 				document.onmousemove = function() {
-					controller.mousemoveThumbRigth(thumbElem, thumbElem2, lineElem);
+					controller.mousemoveThumbRigth(thumbEl, thumbEl2, lineEl);
 				}
 
 				document.onmouseup = function(){
@@ -69,9 +81,6 @@ import Controller from './controller.js';
 				return false; // disable selection start (cursor change)
 			}
 		}
-
-		//thumbRigth(thumb, thumb2, line);
 	};
 
 })(jQuery);
-
