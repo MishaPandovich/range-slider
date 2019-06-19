@@ -18,4 +18,22 @@ export default class View {
 				line.appendChild(thumb);
 				parentElement.appendChild(line);
 	}
+
+	initRangeSlider(parentElement) {
+		var line = document.createElement('div');
+				line.classList.add('line');
+				line.id = parentElement.id + '__line';
+		var thumbLeft = document.createElement('div');
+				thumbLeft.classList.add('thumb');
+				thumbLeft.id = parentElement.id + '__thumb';
+
+		var thumbRigth = document.createElement('div');
+				thumbRigth.classList.add('thumb2');
+				thumbRigth.id = parentElement.id + '__thumb2';
+				thumbRigth.style.left = 40 + 'px';
+
+				line.appendChild(thumbLeft);
+				line.appendChild(thumbRigth);
+				parentElement.appendChild(line);
+	}
 }
