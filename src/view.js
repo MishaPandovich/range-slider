@@ -1,6 +1,5 @@
 export default class View {
-	constructor(parentElement) {
-		this.parentElement = parentElement.id;
+	constructor() {
 	}
 
 	changeView(thumb, left) {

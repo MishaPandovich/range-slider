@@ -9,6 +9,8 @@ export default class Controller {
 	mousedownThumb(thumb) {
 		this._model.drag_status = true;
 		this.positionSlider = event.pageX - thumb.offsetLeft;
+
+		console.log(thumb);
 	} 
 
 	mousemoveThumb(thumb, line) {

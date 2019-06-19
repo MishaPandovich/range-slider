@@ -5,12 +5,12 @@ import Controller from './controller.js';
 
 
 ;(function($) {
-	
+	const model = new Model();
+	const view = new View();
+	const controller = new Controller(model, view); 
+
 	$.fn.slider = function() {
 		const firstThis = this[0];
-		const model = new Model();
-		const view = new View(firstThis);
-		const controller = new Controller(model, view); 
 
 		view.initRangeSlider(firstThis);
 		
@@ -52,7 +52,7 @@ import Controller from './controller.js';
 			}
 		}
 
-		thumbLeft(thumb, thumb2, line);
+		//thumbLeft(thumb, thumb2, line);
 
 		function thumbRigth(thumbElem, thumbElem2, lineElem) {
 			thumbElem2.onmousedown = function() {
@@ -70,7 +70,7 @@ import Controller from './controller.js';
 			}
 		}
 
-		thumbRigth(thumb, thumb2, line);
+		//thumbRigth(thumb, thumb2, line);
 	};
 
 })(jQuery);
