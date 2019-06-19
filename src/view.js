@@ -19,6 +19,8 @@ export default class View {
 				parentElement.appendChild(line);
 	}
 
+	// задать параметр смешения ползунка
+
 	initRangeSlider(parentElement) {
 		var line = document.createElement('div');
 				line.classList.add('line');
@@ -26,6 +28,7 @@ export default class View {
 		var thumbLeft = document.createElement('div');
 				thumbLeft.classList.add('thumb');
 				thumbLeft.id = parentElement.id + '__thumb';
+				thumbLeft.style.left = 0 + 'px';
 
 		var thumbRigth = document.createElement('div');
 				thumbRigth.classList.add('thumb2');

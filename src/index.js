@@ -34,12 +34,14 @@ import Controller from './controller.js';
 			}
 		}
 
+		//standart(thumb, line);
+
 		function thumbLeft(thumbElem, thumbElem2, lineElem) {
 			thumbElem.onmousedown = function() {
 				controller.mousedownThumb(thumbElem);
 
 				document.onmousemove = function() {
-					controller.mouseupLeftThumb(thumbElem, thumbElem2, lineElem);
+					controller.mousemoveThumbLeft(thumbElem, thumbElem2, lineElem);
 				}
 
 				document.onmouseup = function(){
@@ -50,7 +52,6 @@ import Controller from './controller.js';
 			}
 		}
 
-		//standart(thumb, line);
 		thumbLeft(thumb, thumb2, line);
 
 		function thumbRigth(thumbElem, thumbElem2, lineElem) {
@@ -58,7 +59,7 @@ import Controller from './controller.js';
 				controller.mousedownThumb(thumbElem2);
 
 				document.onmousemove = function() {
-					controller.mouseupRigthThumb(thumbElem, thumbElem2, lineElem);
+					controller.mousemoveThumbRigth(thumbElem, thumbElem2, lineElem);
 				}
 
 				document.onmouseup = function(){

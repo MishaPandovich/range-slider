@@ -3,6 +3,7 @@ export default class Controller {
 		this._model = Model;
 		this._view = View;
 		this.positionSlider = 0;
+		this.positionThumb = 0;
 	}
 
 	mousedownThumb(thumb) {
@@ -12,53 +13,56 @@ export default class Controller {
 
 	mousemoveThumb(thumb, line) {
 		if (!this._model.drag_status) return false;
-		
-		var left = event.pageX - this.positionSlider;
 
-		if (left < 0) {
-			left = 0;
-		}
-		
-		if (left > (line.offsetWidth - thumb.offsetWidth)) {
-			left = (line.offsetWidth - thumb.offsetWidth);
-		}
-
-	 	this._view.changeView(thumb, left);
+		this.positionThumb = event.pageX - this.positionSlider;
+	  this.minPosThumb();
+		this.maxPosThumb(thumb, line);
+	 	this._view.changeView(thumb, this.positionThumb);
 	}
 
-	mouseupLeftThumb(thumb, thumb2, line) {
+	mousemoveThumbLeft(thumb, thumbRigth, line) {
 		if (!this._model.drag_status) return false;
 
-		var positionLeft = event.pageX - this.positionSlider;
-
-		if (positionLeft < 0) {
-			positionLeft = 0;
-		}
-
-		var rightEdge = parseInt(thumb2.style.left)-thumb2.offsetWidth;
-		if (positionLeft > rightEdge) {
-			positionLeft = rightEdge;
-		}
-
-		this._view.changeView(thumb, positionLeft);
+		this.positionThumb = event.pageX - this.positionSlider;
+		this.minPosThumb();
+		this.maxPosThumbLeft(thumbRigth, line);
+		this._view.changeView(thumb, this.positionThumb);
 	}
 
-	mouseupRigthThumb(thumbLeft, thumbRigth, line) {
+	mousemoveThumbRigth(thumb, thumbRigth, line) {
 		if (!this._model.drag_status) return false;
+		this.positionThumb = event.pageX - this.positionSlider;
+		this.minPosThumbRigth(thumb);
+		this.maxPosThumb(thumb, line);
+		this._view.changeView(thumbRigth, this.positionThumb);
+	}
 
-		var positionLeft = event.pageX - this.positionSlider;
-		var leftEdge = parseInt(thumbLeft.style.left) + thumbLeft.offsetWidth;
-		var rightEdge = line.offsetWidth - thumbLeft.offsetWidth;
-
-		if (positionLeft < leftEdge) {
-			positionLeft = leftEdge;
+	minPosThumb() {
+		if (this.positionThumb < 0) {
+			  this.positionSlider = 0;
 		}
+	}
 
-		if (positionLeft > rightEdge) {
-      positionLeft = rightEdge;
-    } 
+	maxPosThumb(thumb, line) {
+		if (this.positionThumb > (line.offsetWidth - thumb.offsetWidth)) {
+			  this.positionThumb = (line.offsetWidth - thumb.offsetWidth);
+		}
+	}
 
-    this._view.changeView(thumbRigth, positionLeft);
+	maxPosThumbLeft(thumbRigth) {
+		let rightEdge = parseInt(thumbRigth.style.left) - thumbRigth.offsetWidth;
+
+		if (this.positionThumb > rightEdge) {
+				this.positionThumb = rightEdge;
+		}
+	}
+
+	minPosThumbRigth(thumbLeft) {
+		let leftEdge = parseInt(thumbLeft.style.left) + thumbLeft.offsetWidth;
+
+		if (this.positionThumb < leftEdge) {
+				this.positionThumb = leftEdge;
+		}
 	}
 
 	mouseupThumb() {
