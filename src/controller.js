@@ -4,6 +4,7 @@ export default class Controller {
 		this._view = View;
 		this.positionSlider = 0;
 		this.positionThumb = 0;
+		this._controller = this;
 	}
 
 	mousedownThumb(thumb) {
@@ -11,29 +12,29 @@ export default class Controller {
 		this.positionSlider = event.pageX - thumb.offsetLeft;
 	} 
 
-	mousemoveThumb(thumb, line) {
+	mousemoveThumb(thumb) {
 		if (!this._model.drag_status) return false;
 
 		this.positionThumb = event.pageX - this.positionSlider;
 	  this.minPosThumb();
-		this.maxPosThumb(thumb, line);
+		this.maxPosThumb(thumb);
 	 	this._view.changeView(thumb, this.positionThumb);
 	}
 
-	mousemoveThumbLeft(thumb, thumbRigth, line) {
+	mousemoveThumbLeft(thumb, thumbRigth) {
 		if (!this._model.drag_status) return false;
 
 		this.positionThumb = event.pageX - this.positionSlider;
 		this.minPosThumb();
-		this.maxPosThumbLeft(thumbRigth, line);
+		this.maxPosThumbLeft(thumbRigth);
 		this._view.changeView(thumb, this.positionThumb);
 	}
 
-	mousemoveThumbRigth(thumb, thumbRigth, line) {
+	mousemoveThumbRigth(thumb, thumbRigth) {
 		if (!this._model.drag_status) return false;
 		this.positionThumb = event.pageX - this.positionSlider;
 		this.minPosThumbRigth(thumb);
-		this.maxPosThumb(thumb, line);
+		this.maxPosThumb(thumb);
 		this._view.changeView(thumbRigth, this.positionThumb);
 	}
 
@@ -43,9 +44,9 @@ export default class Controller {
 		}
 	}
 
-	maxPosThumb(thumb, line) {
-		if (this.positionThumb > (line.offsetWidth - thumb.offsetWidth)) {
-			  this.positionThumb = (line.offsetWidth - thumb.offsetWidth);
+	maxPosThumb(thumb) {
+		if (this.positionThumb > (thumb.parentElement.offsetWidth - thumb.offsetWidth)) {
+			  this.positionThumb = (thumb.parentElement.offsetWidth - thumb.offsetWidth);
 		}
 	}
 

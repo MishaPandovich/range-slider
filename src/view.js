@@ -7,6 +7,7 @@ export default class View {
 		var line = document.createElement('div');
 				line.classList.add('line');
 				line.id = parentElement.id + '__line';
+				
 		var thumb = document.createElement('div');
 				thumb.classList.add('thumb');
 				thumb.id = parentElement.id + '__thumb';
@@ -20,6 +21,7 @@ export default class View {
 		var line = document.createElement('div');
 				line.classList.add('line');
 				line.id = parentElement.id + '__line';
+
 		var thumbLeft = document.createElement('div');
 				thumbLeft.classList.add('thumb');
 				thumbLeft.id = parentElement.id + '__thumb';
