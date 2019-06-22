@@ -8,20 +8,31 @@
 	<!--<script src="js/jquery.npoll.js"></script>-->
 </head>
 <body>
-	
-	<div id="sliders"></div>
 
+	<!--<div id="slider-vert">
+		<div id="line-vert">
+			<div id="thumb-vert"></div>
+		</div>
+	</div>-->
+	
+	<div id="sliders">
+		<div class="pop">
+			<div class="ppo"></div>
+		</div>
+	</div>
+	
 	<div id="slide"></div>
 
 	<script src="main.js"></script>
 	<script>
 		$(function() {
 			$('#sliders').slider({
+				vertSlider: true,
 				posThumbLeft: 20
 			});
 		})
 	</script>
-
+<!--
 	<script>
 		$(function() {
 			$('#slide').slider({
@@ -30,6 +41,6 @@
 				posThumbRigth: 150
 			});
 		})
-	</script>
+	</script>-->
 </body>
 </html>

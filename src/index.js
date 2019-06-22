@@ -1,6 +1,40 @@
 // Aplication
-import './addFacade.js';
+import Method from './addFacade.js';
 
+
+;(function($) {
+	const method = new Method();
+
+	var defaults = {
+		vertSlider : false,
+		rangeSlider: false,
+		posThumbLeft: 10,
+		posThumbRigth: 50
+	}
+
+	$.fn.slider = function(options) {
+		var config = $.extend({}, defaults, options);
+		var parentEl = this[0];
+
+		method.createSlider(config.rangeSlider,
+											  config.vertSlider,
+											  parentEl,
+											  config.posThumbLeft,
+											  config.posThumbRigth);
+
+		var thumb = document.getElementById('sliders__thumb');
+		console.log(thumb);
+	};
+})(jQuery);
+
+
+
+// 1. поправить отрисовку 
+// 2. сделать так, чтобы можно было мнговенно менять этот слайдер
+
+//var thumb = document.getElementById('thumb-vert');
+//facade.sayHi(thumb);
+/*
 ;(function($) {
 	var defaults = {
 		rangeSlider: false,
@@ -26,6 +60,11 @@ import './addFacade.js';
 			facade.initThumbLeft(thumb, thumb2);
 			facade.initThumbRigth(thumb, thumb2);
 		}
+
+		var thumbvert = document.getElementById('thumb-vert');
+
+		facade.initSliderVert(thumbvert);
 	};
 
-})(jQuery);
+})(jQuery);*/
+
