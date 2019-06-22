@@ -1,4 +1,9 @@
 export default class View {
+	constructor() {
+		this.thumbLeft;
+		this.thumbRigth;
+	}
+
 	changeView(thumb, left) {
 		thumb.style.left = left + 'px';
 	}
@@ -33,12 +38,12 @@ export default class View {
 				line.id = parentElement.id + '__line';
 				(sliderVert) ? line.classList.add('sliderVert-line') : line.classList.add('slider-line');	
 
-		var thumbLeft = document.createElement('div');
-				(sliderVert) ? thumbLeft.classList.add('sliderVert-thumb') : thumbLeft.classList.add('slider-thumb');	
-				thumbLeft.id = parentElement.id + '__thumb';
-				(sliderVert) ? thumbLeft.style.top = value + 'px' : thumbLeft.style.left = value + 'px';	
+		this.thumbLeft = document.createElement('div');
+				(sliderVert) ? this.thumbLeft.classList.add('sliderVert-thumb') : this.thumbLeft.classList.add('slider-thumb');	
+				this.thumbLeft.id = parentElement.id + '__thumb';
+				(sliderVert) ? this.thumbLeft.style.top = value + 'px' : this.thumbLeft.style.left = value + 'px';	
 
-				line.appendChild(thumbLeft);
+				line.appendChild(this.thumbLeft);
 				parentElement.appendChild(line);
 	}
 
@@ -47,18 +52,18 @@ export default class View {
 				(sliderVert) ? line.classList.add('sliderVert-line') : line.classList.add('slider-line');	
 				line.id = parentElement.id + '__line';
 
-		var thumbLeft = document.createElement('div');
-				(sliderVert) ? thumbLeft.classList.add('sliderVert-thumb') : thumbLeft.classList.add('slider-thumb');
-				thumbLeft.id = parentElement.id + '__thumb';
-				(sliderVert) ? thumbLeft.style.top = value + 'px' : thumbLeft.style.left = value + 'px';	
+		this.thumbLeft = document.createElement('div');
+				(sliderVert) ? this.thumbLeft.classList.add('sliderVert-thumb') : this.thumbLeft.classList.add('slider-thumb');
+				this.thumbLeft.id = parentElement.id + '__thumb';
+				(sliderVert) ? this.thumbLeft.style.top = value + 'px' : this.thumbLeft.style.left = value + 'px';	
 
-		var thumbRigth = document.createElement('div');
-				(sliderVert) ? thumbRigth.classList.add('sliderVert-thumb2') : thumbRigth.classList.add('slider-thumb2');
-				thumbRigth.id = parentElement.id + '__thumb2';
-				(sliderVert) ? thumbRigth.style.top = value2 + 'px' : thumbRigth.style.left = value2 + 'px';	
+		this.thumbRigth = document.createElement('div');
+				(sliderVert) ? this.thumbRigth.classList.add('sliderVert-thumb2') : this.thumbRigth.classList.add('slider-thumb2');
+				this.thumbRigth.id = parentElement.id + '__thumb2';
+				(sliderVert) ? this.thumbRigth.style.top = value2 + 'px' : this.thumbRigth.style.left = value2 + 'px';	
 
-				line.appendChild(thumbLeft);
-				line.appendChild(thumbRigth);
+				line.appendChild(this.thumbLeft);
+				line.appendChild(this.thumbRigth);
 				parentElement.appendChild(line);
 	}
 }

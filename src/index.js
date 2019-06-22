@@ -3,14 +3,14 @@ import Method from './addFacade.js';
 
 
 ;(function($) {
-	const method = new Method();
-
 	var defaults = {
 		vertSlider : false,
-		rangeSlider: false,
+		rangeSlider: true,
 		posThumbLeft: 10,
 		posThumbRigth: 50
 	}
+
+	const method = new Method();
 
 	$.fn.slider = function(options) {
 		var config = $.extend({}, defaults, options);
@@ -22,8 +22,10 @@ import Method from './addFacade.js';
 											  config.posThumbLeft,
 											  config.posThumbRigth);
 
-		var thumb = document.getElementById('sliders__thumb');
-		console.log(thumb);
+		(config.vertSlider) ? method.initVertSlider(config.rangeSlider) : 
+													method.initSlider(config.rangeSlider);	
+
+		return this;
 	};
 })(jQuery);
 
