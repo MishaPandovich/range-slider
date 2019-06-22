@@ -74,7 +74,7 @@ export default class Controller {
 	/*--------------------------------вспомогательные функции----------------------------*/
 	minPosThumb() {
 		if (this.positionThumb < 0) {
-			  this.positionThumb = 0;
+				this.positionThumb = 0;
 		}
 	}
 
